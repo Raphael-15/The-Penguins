@@ -474,7 +474,7 @@ export default function App() {
             <Menu size={24} />
           </button>
           <h1 className={styles.title}>{tabs.find(t_ => t_.id === activeTab)?.label}</h1>
-          <p className={styles.subtitle}>{t.welcome} {user.city}, {user.name}! {t.journey} {user.school} {t.begins}</p>
+          <p className={styles.subtitle}>{t.welcome} {user!.city}, {user!.name}! {t.journey} {user!.school} {t.begins}</p>
         </div>
         {renderContent()}
       </div>
