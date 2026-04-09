@@ -795,18 +795,48 @@ function Community({ school, t }: { school: string, t: any }) {
 
   if (showGame) {
     return (
-      <div className={styles.card} style={{ maxWidth: "900px", width: "100%", margin: "0 auto", padding: "16px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-          <h2 style={{ margin: 0 }}>Community Universe</h2>
-          <button onClick={() => setShowGame(false)} className={styles.button} style={{ width: "auto", padding: "8px 16px" }}>Back to List</button>
+      <div style={{ 
+        position: "fixed", 
+        top: 0, 
+        left: 0, 
+        width: "100vw", 
+        height: "100vh", 
+        zIndex: 9999, 
+        background: "#000",
+        display: "flex",
+        flexDirection: "column"
+      }}>
+        <div style={{ 
+          position: "absolute", 
+          top: "20px", 
+          right: "20px", 
+          zIndex: 10000,
+          display: "flex",
+          gap: "10px"
+        }}>
+          <button 
+            onClick={() => setShowGame(false)} 
+            className={styles.button} 
+            style={{ 
+              width: "auto", 
+              padding: "8px 16px", 
+              background: "rgba(15, 23, 42, 0.8)", 
+              backdropFilter: "blur(8px)", 
+              color: "white", 
+              border: "1px solid rgba(255,255,255,0.1)",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px"
+            }}
+          >
+            <X size={20} /> Exit Universe
+          </button>
         </div>
-        <div style={{ width: "100%", aspectRatio: "16/9", background: "#000", borderRadius: "12px", overflow: "hidden" }}>
-          <iframe 
-            src="/game/index.html" 
-            style={{ width: "100%", height: "100%", border: "none" }}
-            title="Community Unity Game"
-          />
-        </div>
+        <iframe 
+          src="/game/index.html" 
+          style={{ width: "100%", height: "100%", border: "none" }}
+          title="Community Unity Game"
+        />
       </div>
     );
   }
