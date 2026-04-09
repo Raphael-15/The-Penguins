@@ -20,7 +20,8 @@ import {
   LifeBuoy,
   Languages,
   Bot,
-  Globe
+  Globe,
+  Gamepad
 } from "lucide-react";
 
 const RealMap = dynamic(() => import("./components/Map"), { 
@@ -783,6 +784,7 @@ function CityChat({ user, t }: { user: any, t: any }) {
 }
 
 function Community({ school, t }: { school: string, t: any }) {
+  const [showGame, setShowGame] = useState(false);
   const students = [
     { name: "Maria Garcia", origin: "Spain", major: "Architecture", email: "maria.garcia@edu.es", phone: "+34 612 345 678" },
     { name: "Kenji Sato", origin: "Japan", major: "Engineering", email: "kenji.sato@univ.jp", phone: "+81 90 1234 5678" },
@@ -790,13 +792,45 @@ function Community({ school, t }: { school: string, t: any }) {
     { name: "Ahmed Hassan", origin: "Egypt", major: "Medicine", email: "ahmed.hassan@med.eg", phone: "+20 100 123 4567" },
     { name: "Li Wei", origin: "China", major: "Computer Science", email: "li.wei@tech.cn", phone: "+86 138 1234 5678" }
   ];
+
+  if (showGame) {
+    return (
+      <div className={styles.card} style={{ maxWidth: "900px", width: "100%", margin: "0 auto", padding: "16px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+          <h2 style={{ margin: 0 }}>Community Universe</h2>
+          <button onClick={() => setShowGame(false)} className={styles.button} style={{ width: "auto", padding: "8px 16px" }}>Back to List</button>
+        </div>
+        <div style={{ width: "100%", aspectRatio: "16/9", background: "#000", borderRadius: "12px", overflow: "hidden" }}>
+          <iframe 
+            src="/game/index.html" 
+            style={{ width: "100%", height: "100%", border: "none" }}
+            title="Community Unity Game"
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.card} style={{ maxWidth: "600px", margin: "0 auto" }}>
-      <h2 className={styles.cardTitle}>
-        <img src="/Gemini_Generated_Image_fdlff8fdlff8fdlf.png" alt="" width="24" height="24" style={{ borderRadius: "4px" }} />
-        {t.intlStudents} {school}
-      </h2>
-      <p style={{ color: "var(--text-secondary)", marginBottom: "24px" }}>{t.connectWith} {school}.</p>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
+        <div>
+          <h2 className={styles.cardTitle}>
+            <img src="/Gemini_Generated_Image_fdlff8fdlff8fdlf.png" alt="" width="24" height="24" style={{ borderRadius: "4px" }} />
+            {t.intlStudents} {school}
+          </h2>
+          <p style={{ color: "var(--text-secondary)" }}>{t.connectWith} {school}.</p>
+        </div>
+        <button 
+          onClick={() => setShowGame(true)} 
+          className={styles.button} 
+          style={{ width: "auto", background: "var(--secondary)", color: "#0F172A", gap: "8px" }}
+        >
+          <Gamepad size={20} />
+          Join Universe
+        </button>
+      </div>
+      
       <div className={styles.connectList}>
         {students.map((student, idx) => (
           <div key={idx} className={styles.connectItem} style={{ flexDirection: "column", alignItems: "flex-start", gap: "12px" }}>
